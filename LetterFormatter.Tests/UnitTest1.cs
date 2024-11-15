@@ -4,16 +4,95 @@ namespace LetterFormatter.Tests
 {
     public class FormatterTests
     {
+
         [Test]
-        public void Test_ValidInput()
+        public void FormatLetter_ShouldCenterAlignLines()
         {
-            Assert.Pass(); // «аглушка дл€ тестов
+            int k = 10;
+            int n = 3;
+            string[] input = { "Hi", "Test", "World" };
+            string[] expected = { "   Hi    ", "  Test   ", "  World  " };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+
+        [Test]
+        public void FormatLetter_ShouldReturnImpossible_WhenLineTooLong()
+        {
+            int k = 5;
+            int n = 1;
+            string[] input = { "TooLong" };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.IsNull(result, "Expected null when a line cannot be formatted.");
         }
 
         [Test]
-        public void Test_FormatLine_CentersCorrectly()
+        public void FormatLetter_SingleLineExactLength()
         {
-            Assert.That(Formatter.FormatLine(10, "Hello"), Is.EqualTo("  Hello   "));
+            int k = 5;
+            int n = 1;
+            string[] input = { "Hello" };
+            string[] expected = { "Hello" };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void FormatLetter_MinimumWidth()
+        {
+            int k = 1;
+            int n = 1;
+            string[] input = { "A" };
+            string[] expected = { "A" };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void FormatLetter_EmptyInput()
+        {
+            int k = 5;
+            int n = 0;
+            string[] input = { };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(Array.Empty<string>()), "Expected empty output for empty input.");
+        }
+
+        [Test]
+        public void FormatLetter_UnbalancedSpaces()
+        {
+            int k = 7;
+            int n = 1;
+            string[] input = { "Hi" };
+            string[] expected = { "  Hi   " }; // 2 пробела слева, 3 справа
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void FormatLetter_MixedInput()
+        {
+            int k = 8;
+            int n = 3;
+            string[] input = { "A", "Bigger", "Test" };
+            string[] expected = { "   A    ", " Bigger ", "  Test  " };
+
+            var result = Formatter.FormatLetter(k, n, input);
+
+            Assert.That(result, Is.EqualTo(expected));
         }
 
     }

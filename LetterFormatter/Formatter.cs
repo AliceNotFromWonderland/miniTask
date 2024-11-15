@@ -10,9 +10,20 @@ namespace LetterFormatter
     {
         public static string[] FormatLetter(int k, int n, string[] lines)
         {
-            // Заглушка: всегда возвращает null
-            return null;
+            if (lines.Length != n || lines.Any(line => line.Length > k))
+                throw new ArgumentException("Invalid input data.");
+
+            var formattedLines = new List<string>();
+            foreach (var line in lines)
+            {
+                string formatted = FormatLine(k, line);
+                if (formatted == null)
+                    return new[] { "Impossible." };
+                formattedLines.Add(formatted);
+            }
+            return formattedLines.ToArray();
         }
+
 
         public static string FormatLine(int k, string line)
         {
