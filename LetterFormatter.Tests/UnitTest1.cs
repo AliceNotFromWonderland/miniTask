@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Runtime.Serialization;
 
 namespace LetterFormatter.Tests
@@ -11,13 +12,12 @@ namespace LetterFormatter.Tests
             int k = 10;
             int n = 3;
             string[] input = { "Hi", "Test", "World" };
-            string[] expected = { "   Hi    ", "  Test   ", "  World  " };
+            string[] expected = { "    Hi    ", "   Test   ", "  World   " };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(expected));
         }
-
 
         [Test]
         public void FormatLetter_ShouldReturnImpossible_WhenLineTooLong()
@@ -26,9 +26,9 @@ namespace LetterFormatter.Tests
             int n = 1;
             string[] input = { "TooLong" };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
-            Assert.IsNull(result, "Expected null when a line cannot be formatted.");
+            Assert.That(result, Is.EqualTo(new[] { "Impossible." }), "Expected 'Impossible.' when a line cannot be formatted.");
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace LetterFormatter.Tests
             string[] input = { "Hello" };
             string[] expected = { "Hello" };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -52,7 +52,7 @@ namespace LetterFormatter.Tests
             string[] input = { "A" };
             string[] expected = { "A" };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -64,7 +64,7 @@ namespace LetterFormatter.Tests
             int n = 0;
             string[] input = { };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(Array.Empty<string>()), "Expected empty output for empty input.");
         }
@@ -77,7 +77,7 @@ namespace LetterFormatter.Tests
             string[] input = { "Hi" };
             string[] expected = { "  Hi   " }; // 2 пробела слева, 3 справа
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -90,7 +90,7 @@ namespace LetterFormatter.Tests
             string[] input = { "A", "Bigger", "Test" };
             string[] expected = { "   A    ", " Bigger ", "  Test  " };
 
-            var result = Formatter.FormatLetter(k, n, input);
+            var result = Program.FormatLetter(k, n, input);
 
             Assert.That(result, Is.EqualTo(expected));
         }

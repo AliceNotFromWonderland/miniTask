@@ -1,0 +1,7 @@
+C:\Users\alisa\source\repos\task\LetterFormatter\bin\Debug\LetterFormatter.exe.config
+C:\Users\alisa\source\repos\task\LetterFormatter\bin\Debug\LetterFormatter.exe
+C:\Users\alisa\source\repos\task\LetterFormatter\bin\Debug\LetterFormatter.pdb
+C:\Users\alisa\source\repos\task\LetterFormatter\obj\Debug\LetterFormatter.csproj.AssemblyReference.cache
+C:\Users\alisa\source\repos\task\LetterFormatter\obj\Debug\LetterFormatter.csproj.CoreCompileInputs.cache
+C:\Users\alisa\source\repos\task\LetterFormatter\obj\Debug\LetterFormatter.exe
+C:\Users\alisa\source\repos\task\LetterFormatter\obj\Debug\LetterFormatter.pdb
